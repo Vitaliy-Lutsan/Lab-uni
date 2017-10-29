@@ -6,8 +6,7 @@
 #define VALUESIZE 100
 //===================
 void displayArray (int* array,int size);
-void displayArraySorted(int* array, int size);
-void displayArrayExtremes(int* array, int size);
+void swapArrayExtremes(int* array, int size);
 //==================================================================
 int main (){
   int input;
@@ -19,9 +18,9 @@ int main (){
   }
   printf("Array generated:\n");
   displayArray(arr, ARRAYSIZE);
-  //================Array displayed, ready to schtuff
-  displayArraySorted(arr, ARRAYSIZE);
-  displayArrayExtremes(arr, ARRAYSIZE);
+  //================Array displayed, ready to operate
+  swapArrayExtremes(arr, ARRAYSIZE);
+  displayArray(arr, ARRAYSIZE);
   return 0;
 }
 //==================================================================
@@ -33,33 +32,24 @@ void displayArray (int* array,int size){
   return;
 }
 //=====================================
-void displayArraySorted(int* array, int size){
-  int odd[size], even[size];
-  int sizeOfOdd = 0, sizeOfEven = 0;
-  for(int j = 0; j < size; j++){
-    if (array[j] % 2 ) {
-      odd[sizeOfOdd] = array[j];
-      sizeOfOdd+=1;
-    }
-    else{
-      even[sizeOfEven] = array[j];
-      sizeOfEven+=1;
-    }
-  }
-  //==============
-  printf("Odd elements in the array are:\n");
-  displayArray(odd, sizeOfOdd);
-  printf("Even elements of the array are:\n");
-  displayArray(even, sizeOfEven);
-  return;
-}
-//===================================
-void displayArrayExtremes(int* array, int size){
+void swapArrayExtremes(int* array, int size){
   int min = VALUESIZE,max = 0;
+  int minAdress = NULL;
+  int maxAdress = NULL;
+  //Initialised
   for (int i = 0; i < size; i++){
-    min = (array[i] < min )? array[i] : min;
-    max = (array[i]> max) ? array [i] : max;
+    if (array[i] < min ){
+      minAdress = i;
+      min = array[i];
+    }
+    if (array[i]> max){
+      maxAdress = i;
+      max = array[i];
+    }
   }
-  printf("The biggest number in array is %d\nThe smallest number in array is %d\n", max , min);
+  //Main loop finished. Min and Max found
+  array[minAdress] = max;
+  array[maxAdress] = min;
+  printf("The biggest number in array is %d at index %d\nThe smallest number in array is %d at index %d\nMin and max swapped\n", max , maxAdress, min, minAdress);
   return;
 }
