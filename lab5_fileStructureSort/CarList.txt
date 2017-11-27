@@ -1,0 +1,6 @@
+Ford_Focus 2008 47478
+KIA_Sportage 2008 29290
+Toyota_Prius 2010 8967
+Mercedes_E160 2004 29080
+Toyota_Corolla 2009 80047
+Mitsubisi_Lancer 2014 57557
